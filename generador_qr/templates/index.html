@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Generación de QR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">Generador de QR con Python + Django</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">Ingrese el texto que desea convertir a QR</h2>
+                <hr>
+                <p class="text-center">El QR se generara en base al texto ingresado</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="{% url 'generar_qr' %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="texto" name="texto" required>
+                        <button type="submit" class="btn btn-primary">Generar QR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if imgQR %}
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6 text-center">
+                <img src="{{ ruta_imagen }}" alt="QR Code" class="img-fluid mb-3" style="max-width: 300px;">
+                <br>
+                <a href="{% url 'descargar_qr' imgQR %}" class="btn btn-success">Descargar QR</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
