@@ -2,6 +2,10 @@
 
 Sistema web simple para generar códigos QR a partir de texto. Permite crear códigos QR dinámicamente y descargarlos como imágenes PNG.
 
+
+![Resultado](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/refs/heads/master/generar-codigos-QR-con-python-django.png)
+
+
 ## ¿Qué hace este proyecto?
 
 - Convierte cualquier texto en un código QR
